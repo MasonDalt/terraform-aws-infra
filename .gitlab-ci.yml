@@ -12,7 +12,9 @@ fmt_check:
   stage: validate
   script:
     - terraform fmt -check -recursive
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
 
 validate_check:
   stage: validate
@@ -20,7 +22,9 @@ validate_check:
     - cd modules/environments/dev
     - terraform init -backend=false
     - terraform validate
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
 
 plan:
   stage: plan
@@ -37,7 +41,9 @@ plan:
       when: on_success
     - if: '$CI_COMMIT_BRANCH == "main"'
       when: on_success
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
 
 apply:
   stage: apply
@@ -50,4 +56,6 @@ apply:
   when: manual
   only:
     - main
-  image: hashicorp/terraform:latest
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint: [""]
