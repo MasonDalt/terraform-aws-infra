@@ -1,8 +1,8 @@
 module "vpc" {
-    source = "../../modules/vpc"
+    source = "../../vpc"
 }
 
 module "ec2" {
-    source = "../../modules/ec2"
+    source = "../../ec2"
     subnet_id = module.vpc.subnetid
 }
